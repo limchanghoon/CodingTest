@@ -26,7 +26,7 @@ vector<float> calTime(vector<float> times,float _procesTime) {
 	}
 }
 
-bool compareTime(vector<float> times, vector<float> comTime) {	// 1¹ø ¸Å°³º¯¼ö°¡ ´õ ºü¸£¸é True, °°Àº °æ¿ìµµ True
+bool compareTime(vector<float> times, vector<float> comTime) {	// 1ë²ˆ ë§¤ê°œë³€ìˆ˜ê°€ ë” ë¹ ë¥´ë©´ True, ê°™ì€ ê²½ìš°ë„ True
 	if (times[0] < comTime[0]) {
 		return true;
 	}
@@ -111,11 +111,12 @@ int solution(vector<string> lines) {
 	return answer;
 }
 
-/*
+
 
 int main() {
 	vector<string> v;
 	
+	// í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤
 	v.push_back("2016-09-15 20:59:57.421 0.351s");
 	v.push_back("2016-09-15 20:59:58.233 1.181s");
 	v.push_back("2016-09-15 20:59:58.299 0.8s");
@@ -126,11 +127,10 @@ int main() {
 	v.push_back("2016-09-15 21:00:00.748 2.31s");
 	v.push_back("2016-09-15 21:00:00.966 0.381s");
 	v.push_back("2016-09-15 21:00:02.066 2.62s");
-	
 	v.push_back("2016-09-15 21:00:10.001 3s");
 	v.push_back("2016-09-15 21:00:09.001 0.1s");
+	//
+	
 	cout << solution(v) << endl;
 	return 0;
 }
-
-*/
