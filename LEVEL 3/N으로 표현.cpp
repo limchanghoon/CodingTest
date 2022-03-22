@@ -1,3 +1,5 @@
+// 배열에 저장하지 않고 한번 연산의 결과값을 재귀적으로 호출해 풀이할 수도 있다. //
+
 #include <string>
 #include <vector>
 #include <set>
@@ -20,16 +22,16 @@ int solution(int N, int number) {
 		for (int j = 1; j < i; j++) {
 			for (auto itr = v[j].begin(); itr != v[j].end(); itr++) {
 				for (auto itr2 = v[i - j].begin(); itr2 != v[i - j].end(); itr2++) {
-					// 1.���ϱ�
+					// 1.더하기
 					if (*itr + *itr2 >= 1)
 						v[i].insert(*itr + *itr2);
-					// 2. ����
+					// 2. 빼기
 					if (*itr - *itr2 >= 1)
 						v[i].insert(*itr - *itr2);
-					//3. ���ϱ�
+					//3. 곱하기
 					if (*itr * *itr2 >= 1)
 						v[i].insert(*itr * *itr2);
-					//4. ������
+					//4. 나누기
 					if (*itr / *itr2 >= 1)
 						v[i].insert(*itr / *itr2);
 				}
@@ -46,12 +48,10 @@ int solution(int N, int number) {
 
 }
 
-/*
 
 int main() {
 
+	// 테스트 케이스 //
 	printf("%d\n", solution(8,53));
 	return 0;
 }
-
-*/
