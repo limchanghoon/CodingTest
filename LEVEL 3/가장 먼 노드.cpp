@@ -52,9 +52,6 @@ int solution(int n, vector<vector<int>> edge) {
 	checkNode[1] = true;
 	results[1] = 0;
 
-	
-	//sort(edge.begin(), edge.end(), cmp);
-
 	vector<vector<int>> ev(n + 1);
 	for (int i = 0; i < edge.size(); i++) {
 		ev[edge[i][0]].push_back(edge[i][1]);
@@ -82,12 +79,11 @@ int solution(int n, vector<vector<int>> edge) {
 }
 
 
-/*
+
 
 int main() {
-	// {1,3},{1,2},{2,4},{3,6},{3,2},{4,3},{5,2}
+	// 테스트 케이스 //
 	printf("%d\n", solution(6, { {3,6},{4,3},{3,2},{1,3},{1,2},{2,4},{5,2} }));
 	return 0;
 }
 
-*/
