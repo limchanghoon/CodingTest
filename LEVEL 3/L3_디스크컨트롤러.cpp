@@ -1,22 +1,18 @@
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <queue>
 
 using namespace std;
 
-bool cmp(const vector<int>& a, const vector<int>& b) {
-    return a[0] < b[0];
-}
 
-
+/*
+// 그냥 풀이
 int solution(vector<vector<int>> jobs) {
     int answer = 0;
     bool* check = new bool[jobs.size()];
     for (int i = 0; i < jobs.size(); i++) {
         check[i] = false;
     }
-
-    sort(jobs.begin(), jobs.end(), cmp);
 
     int i = 0;
     while(true) {
@@ -47,9 +43,62 @@ int solution(vector<vector<int>> jobs) {
 
     }
 }
+*/
 
+/*
+// 우선순위 큐 사용한 풀이
+struct compare
+{
+    bool operator() (const vector<int>& a, const vector<int>& b){
+        return a[1] > b[1];
+    }
+};
 
+int solution(vector<vector<int>> jobs) {
+    int answer = 0;
+    priority_queue<vector<int>, vector<vector<int>>,compare> pq;
+
+    bool* check = new bool[jobs.size()];
+    for (int i = 0; i < jobs.size(); i++) {
+        check[i] = false;
+    }
+
+    int i = 0;
+    while (true) {
+        for (int j = 0; j < jobs.size(); j++) {
+            if (!check[j] && i >= jobs[j][0]) {
+                pq.push(jobs[j]);
+                check[j] = true;
+            }
+        }
+
+        if (pq.empty()) {
+            i++;
+        }
+        else {
+            answer += i - pq.top()[0] + pq.top()[1];
+            i += pq.top()[1];
+            pq.pop();
+
+            if (pq.empty()) {
+                for (int k = 0; k < jobs.size(); k++) {
+                    if (!check[k]) break;
+                    if (k == jobs.size() - 1) {
+                        answer /= jobs.size();
+                        return answer;
+                    }
+                }
+            }
+              
+        }
+
+    }
+}
+*/
+
+/*
 int main() {
     vector<vector<int>> v{ {0, 3}, {1, 9}, {2, 6} };
     printf("Result : %d\n", solution(v));
 }
+*/
