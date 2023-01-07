@@ -1,5 +1,3 @@
-/*
-
 #include <string>
 #include <vector>
 #include <set>
@@ -7,15 +5,15 @@
 
 using namespace std;
 
-set<pair<int,int>> oneWays[50001];	// {´ÙÀ½ ³ëµå, ½Ã°£}
-char nodes[50001];					// R: ½°ÅÍ, G: ÀÔÃâ±¸, S:»êºÀ¿ì¸®
+set<pair<int,int>> oneWays[50001];	// {ë‹¤ìŒ ë…¸ë“œ, ì‹œê°„}
+char nodes[50001];					// R: ì‰¼í„°, G: ì…ì¶œêµ¬, S:ì‚°ë´‰ìš°ë¦¬
 int costs[50001];
 
 vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector<int> summits) {
 	vector<int> answer;
-	queue<pair<int, int>> q;			// {ÇöÀç À§Ä¡, Áö±İ±îÁö ½Ã°£}
-	// ³ëµå´Â R: ½°ÅÍ, G: ÀÔÃâ±¸, S:»êºÀ¿ì¸® À¸·Î ±¸ºĞÇÔ.
-	// costs[]¿¡ Å«°ªÀ» ÃÊ±â°ªÀ¸·Î ÀúÀåÇÔ.
+	queue<pair<int, int>> q;			// {í˜„ì¬ ìœ„ì¹˜, ì§€ê¸ˆê¹Œì§€ ì‹œê°„}
+	// ë…¸ë“œëŠ” R: ì‰¼í„°, G: ì…ì¶œêµ¬, S:ì‚°ë´‰ìš°ë¦¬ ìœ¼ë¡œ êµ¬ë¶„í•¨.
+	// costs[]ì— í°ê°’ì„ ì´ˆê¸°ê°’ìœ¼ë¡œ ì €ì¥í•¨.
 	for (int i = 1; i <= n; i++) {
 		nodes[i] = 'R';
 		costs[i] = 10000001;
@@ -25,7 +23,7 @@ vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector
 		nodes[summits[i]] = 'S';
 	}
 
-	// ÀÔÃâ±¸¿¡¼­ ½ÃÀÛÇÏ´Ï q¿¡ ³ÖÀ½. ±×¸®°í ½ÃÀÛÁ¡ÀÌ´Ï Áö±İ±îÁöÀÇ cost´Â 0ÀÓ.
+	// ì…ì¶œêµ¬ì—ì„œ ì‹œì‘í•˜ë‹ˆ qì— ë„£ìŒ. ê·¸ë¦¬ê³  ì‹œì‘ì ì´ë‹ˆ ì§€ê¸ˆê¹Œì§€ì˜ costëŠ” 0ì„.
 	for (int i = 0; i < gates.size(); i++) {
 		q.push({ gates[i], 0 });
 		costs[gates[i]] = 0;
@@ -35,38 +33,38 @@ vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector
 
 	for (int i = 0; i < paths.size(); i++) {
 		if ((nodes[paths[i][0]] == 'R' && nodes[paths[i][1]] == 'S') || (nodes[paths[i][0]] == 'G' && nodes[paths[i][1]] == 'R') || (nodes[paths[i][0]] == 'G' && nodes[paths[i][1]] == 'S')) 
-		{	// R -> S, G -> R, G -> S ÀÌ´Â ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î¸¸ ÀÌµ¿ °¡´É
+		{	// R -> S, G -> R, G -> S ì´ëŠ” ì™¼ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œë§Œ ì´ë™ ê°€ëŠ¥
 			oneWays[paths[i][0]].insert({ paths[i][1], paths[i][2] });
 		}
 		else if ((nodes[paths[i][0]] == 'R' && nodes[paths[i][1]] == 'G') || (nodes[paths[i][0]] == 'S' && nodes[paths[i][1]] == 'R') || (nodes[paths[i][0]] == 'S' && nodes[paths[i][1]] == 'G')) 
-		{	// R <- G, S <- R, S <- G ÀÌ´Â ¿À¸¥ÂÊ¿¡¼­ ¿ŞÁ·À¸·Î¸¸ ÀÌµ¿ °¡´É
+		{	// R <- G, S <- R, S <- G ì´ëŠ” ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ì¡±ìœ¼ë¡œë§Œ ì´ë™ ê°€ëŠ¥
 			oneWays[paths[i][1]].insert({ paths[i][0], paths[i][2] });
 		}
 		else if (nodes[paths[i][0]] == 'R' && nodes[paths[i][1]] == 'R')
-		{	// R <-> R ÀÌ´Â ¾çÂÊÀ¸·Î ÀÌµ¿ °¡´É
+		{	// R <-> R ì´ëŠ” ì–‘ìª½ìœ¼ë¡œ ì´ë™ ê°€ëŠ¥
 			oneWays[paths[i][0]].insert({ paths[i][1], paths[i][2] });
 			oneWays[paths[i][1]].insert({ paths[i][0], paths[i][2] });
 		}
 	}
 
-	// q¸¦ ¸ğµÎ µ·´Ù. (ÀÏ´Ü ÀÔ±¸ºÎÅÍ ½ÃÀÛÇØ¼­ °æ·Î¸¦ q¿¡ ³Ö´Â´Ù.)
+	// që¥¼ ëª¨ë‘ ëˆë‹¤. (ì¼ë‹¨ ì…êµ¬ë¶€í„° ì‹œì‘í•´ì„œ ê²½ë¡œë¥¼ qì— ë„£ëŠ”ë‹¤.)
 	while (!q.empty())
 	{
 		int pos = q.front().first; 
 		int cost = q.front().second;
 		q.pop();
 
-		// costs[pos] º¸´Ù cost°¡ Å©´Ù´Â °ÍÀº costs[pos]°¡ ÃÖ¼Ò ÇÑ¹øÀº °»½ÅµÆ´Ù´Â ÀÇ¹Ì
-		// Áï, ÇöÀç costs[pos] ÃÖ¼ÒÇÑ costº¸´Ù´Â ÀûÀº cost¸¦ »ç¿ëÇÔ
+		// costs[pos] ë³´ë‹¤ costê°€ í¬ë‹¤ëŠ” ê²ƒì€ costs[pos]ê°€ ìµœì†Œ í•œë²ˆì€ ê°±ì‹ ëë‹¤ëŠ” ì˜ë¯¸
+		// ì¦‰, í˜„ì¬ costs[pos] ìµœì†Œí•œ costë³´ë‹¤ëŠ” ì ì€ costë¥¼ ì‚¬ìš©í•¨
 		if (costs[pos] < cost) {
 			continue;
 		}
 
-		if (nodes[pos] == 'S') {	// ºÀ¿ì¸® µµÂø ÇöÀç cost°¡ costs[ºÀ¿ì¸®]º¸´Ù ÀÛÀ¸¸é ÀúÀå
+		if (nodes[pos] == 'S') {	// ë´‰ìš°ë¦¬ ë„ì°© í˜„ì¬ costê°€ costs[ë´‰ìš°ë¦¬]ë³´ë‹¤ ì‘ìœ¼ë©´ ì €ì¥
 			if (costs[pos] > cost)
 				costs[pos] = cost;
 		}
-		else  {	// ÇöÀç À§Ä¡(G or R)¿¡¼­ ´ÙÀ½ ÀÌµ¿ °æ·Î·Î ÀÌµ¿. ÇöÀç  cost¿Í ´ÙÀ½ À§Ä¡ÀÇ costs[´ÙÀ½ À§Ä¡]Áß Å« °ÍÀÌ q¿¡ µé¾î°¡´Â costÀÌ´Ù.
+		else  {	// í˜„ì¬ ìœ„ì¹˜(G or R)ì—ì„œ ë‹¤ìŒ ì´ë™ ê²½ë¡œë¡œ ì´ë™. í˜„ì¬  costì™€ ë‹¤ìŒ ìœ„ì¹˜ì˜ costs[ë‹¤ìŒ ìœ„ì¹˜]ì¤‘ í° ê²ƒì´ qì— ë“¤ì–´ê°€ëŠ” costì´ë‹¤.
 			for (auto x : oneWays[pos]) {
 				if (costs[x.first] > max(cost, x.second)) {
 					costs[x.first] = max(cost, x.second);
@@ -77,7 +75,7 @@ vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector
 		}
 	}
 
-	// »êºÀ¿ì¸® Áß¿¡¼­ °¡Àå ÀÛÀº costs[]¸¦ °¡Áö´Â °÷À» °í¸§.(costs[]°¡ °°À¸¸é nummber°¡ ÀÛÀº »êºÀ¿ì¸® ¼±ÅÃÇÔ)
+	// ì‚°ë´‰ìš°ë¦¬ ì¤‘ì—ì„œ ê°€ì¥ ì‘ì€ costs[]ë¥¼ ê°€ì§€ëŠ” ê³³ì„ ê³ ë¦„.(costs[]ê°€ ê°™ìœ¼ë©´ nummberê°€ ì‘ì€ ì‚°ë´‰ìš°ë¦¬ ì„ íƒí•¨)
 	int intensity = 10000001; int number = 200001;
 	for (int i = 0; i < summits.size(); i++) {
 		if (intensity == costs[summits[i]] && number > summits[i]) {
@@ -94,6 +92,7 @@ vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector
 	return answer;
 }
 
+/*
 int main() {
 	vector<int> result = solution(7, { { 1,2,5 },{ 1,4,1 },{ 2,3,1 },{ 2,6,7 },{ 4,5,1 },{ 5,6,1 },{ 6,7,1 } }, { 3,7 }, { 1,5 });
 	printf("Result : (%d , %d)\n", result[0], result[1]);
