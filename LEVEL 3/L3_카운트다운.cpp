@@ -1,4 +1,3 @@
-/*
 #include <string>
 #include <vector>
 
@@ -57,6 +56,7 @@ vector<int> solution(int target) {
     return { v[target][0] , v[target][1] };
 }
 
+/*
 int main() {
     vector<int> v = solution(61);
 

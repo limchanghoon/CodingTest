@@ -164,7 +164,7 @@ int solution(vector<vector<int>> board, vector<int> aloc, vector<int> bloc) {
     return answer;
 }
 
-
+/*
 int main() {
     //vector<vector<int>> v = { {1, 1, 1}, {1, 1, 1}, {1, 1, 1} };
     //vector<int> v1 = { 1, 0 };
@@ -181,3 +181,5 @@ int main() {
     printf("Result : %d\n", solution(v, v1, v2));
     return 0;
 }
+
+*/

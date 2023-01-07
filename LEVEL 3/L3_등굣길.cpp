@@ -40,8 +40,10 @@ int solution(int m, int n, vector<vector<int>> puddles) {
     return answer;
 }
 
+/*
 int main() {
     solution(4, 3, { { 2, 2 } });
 
     return 0;
 }
+*/

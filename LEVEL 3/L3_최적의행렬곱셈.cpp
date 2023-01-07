@@ -1,4 +1,3 @@
-/*
 #include <string>
 #include <vector>
 
@@ -32,6 +31,7 @@ int solution(vector<vector<int>> matrix_sizes) {
     return answer;
 }
 
+/*
 int main() {
 
     printf("result : %d\n", solution({ {5,3},{3,10},{10,6} }));

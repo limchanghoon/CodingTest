@@ -13,6 +13,7 @@ bool cmp(const vector<int>& a, const vector<int>& b) {
     }
 
 }
+
 int solution(vector<vector<int>> routes) {
     if (routes.size() == 1) return 1;
     int answer = 0;

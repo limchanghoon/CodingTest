@@ -1,4 +1,4 @@
-/*
+
 #include <string>
 #include <vector>
 
@@ -62,6 +62,7 @@ int solution(vector<vector<int>> beginning, vector<vector<int>> target) {
     return answer;
 }
 
+/*
 int main() {
 
     printf("%d\n", solution({ {0, 1, 0, 0, 0 }, { 1, 0, 1, 0, 1 }, { 0, 1, 1, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 1, 0 } },

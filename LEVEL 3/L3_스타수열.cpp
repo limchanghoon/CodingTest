@@ -1,4 +1,3 @@
-/*
 #include <string>
 #include <vector>
 #include <set>
@@ -52,6 +51,7 @@ int solution(vector<int> a) {
     return answer;
 }
 
+/*
 int main() {
     printf("%d\n", solution({ 0 }));
     printf("%d\n", solution({ 5,2,3,3,5,3 }));

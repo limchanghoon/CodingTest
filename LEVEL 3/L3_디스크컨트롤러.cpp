@@ -5,9 +5,9 @@
 using namespace std;
 
 
-/*
+
 // 그냥 풀이
-int solution(vector<vector<int>> jobs) {
+int solution1(vector<vector<int>> jobs) {
     int answer = 0;
     bool* check = new bool[jobs.size()];
     for (int i = 0; i < jobs.size(); i++) {
@@ -16,11 +16,11 @@ int solution(vector<vector<int>> jobs) {
 
     int i = 0;
     while(true) {
-        int maxTime = 1001;
+        int minTime = 1001;
         int index = -1;
         for (int j = 0; j < jobs.size(); j++) {
-            if (!check[j] && i >= jobs[j][0] && maxTime > jobs[j][1]) {
-                maxTime = jobs[j][1];
+            if (!check[j] && i >= jobs[j][0] && minTime > jobs[j][1]) {
+                minTime = jobs[j][1];
                 index = j;
             }
         }
@@ -43,9 +43,9 @@ int solution(vector<vector<int>> jobs) {
 
     }
 }
-*/
 
-/*
+
+
 // 우선순위 큐 사용한 풀이
 struct compare
 {
@@ -54,7 +54,7 @@ struct compare
     }
 };
 
-int solution(vector<vector<int>> jobs) {
+int solution2(vector<vector<int>> jobs) {
     int answer = 0;
     priority_queue<vector<int>, vector<vector<int>>,compare> pq;
 
@@ -94,7 +94,6 @@ int solution(vector<vector<int>> jobs) {
 
     }
 }
-*/
 
 /*
 int main() {

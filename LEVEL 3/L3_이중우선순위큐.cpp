@@ -60,6 +60,7 @@ vector<int> solution(vector<string> operations) {
     return answer;
 }
 
+/*
 int main() {
 
     //vector<string> v = { {"I 7"}, {"I 5"}, {"I -5"}, {"D -1"} };
@@ -70,3 +71,5 @@ int main() {
 
     return 0;
 }
+
+*/

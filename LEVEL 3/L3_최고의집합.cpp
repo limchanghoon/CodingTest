@@ -1,4 +1,3 @@
-/*
 #include <string>
 #include <vector>
 
@@ -24,6 +23,7 @@ vector<int> solution(int n, int s) {
     return answer;
 }
 
+/*
 int main() {
     vector<int> v = solution(3, 11);
     printf("%d, %d, %d\n", v[0], v[1], v[2]);

@@ -66,9 +66,12 @@ int solution(int n, vector<vector<int>> data) {
     return answer;
 }
 
+/*
 int main() {
     //vector<vector<int>> v = { {0, 0}, {1, 1}, {0, 2}, {2, 0} };
     vector<vector<int>> v = { {0, 0}, {0, 2}, {1, 1}, {1, 3},{1, 4}, {2, 0}, {2, 2}, {3, 2}, {4, 3} };
     printf("result : %d\n", solution(v.size(), v));
     return 0;
 }
+
+*/

@@ -9,7 +9,7 @@ bool solution(vector<vector<int>> key, vector<vector<int>> lock) {
     vector<vector<int>> NNK(N, vector<int>(N));
 
     for (int loop = 0; loop < 4; loop++) {
-        // 90ë„ íšŒì „
+        // 90µµ È¸Àü
         vector<vector<int>> rotatekey(M, vector<int>(M));
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < M; j++) {
@@ -18,11 +18,11 @@ bool solution(vector<vector<int>> key, vector<vector<int>> lock) {
         }
         key = rotatekey;
         
-        // lockì˜ ëª¨ë“  ì¹¸ì„ ê²€ì‚¬
+        // lockÀÇ ¸ğµç Ä­À» °Ë»ç
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
 
-                // lockì˜ ëª¨ë“  ì¹¸ì— keyì˜ ëª¨ë“  ëª¨ì–‘ì„ ë§ì¶°ë³¸ë‹¤.
+                // lockÀÇ ¸ğµç Ä­¿¡ keyÀÇ ¸ğµç ¸ğ¾çÀ» ¸ÂÃçº»´Ù.
                 for (int k = 0; k < M; k++) {
                     for (int r = 0; r < M; r++) {
                         NNK.assign(N, vector<int>(N));
@@ -32,7 +32,7 @@ bool solution(vector<vector<int>> key, vector<vector<int>> lock) {
                             }
                         }
 
-                        // (N*Nìœ¼ë¡œ í™•ì¥ì‹œí‚¨)keyì™€ lockì˜ í•©ì´ ëª¨ë“ ì¹¸ì—ì„œ 1ì´ë©´ checkëŠ” true
+                        // (N*NÀ¸·Î È®Àå½ÃÅ²)key¿Í lockÀÇ ÇÕÀÌ ¸ğµçÄ­¿¡¼­ 1ÀÌ¸é check´Â true
                         bool check = true;
                         for (int x = 0; x < N; x++) {
                             for (int y = 0; y < N; y++) {
@@ -57,6 +57,7 @@ bool solution(vector<vector<int>> key, vector<vector<int>> lock) {
     return answer;
 }
 
+/*
 int main() {
 
     vector<vector<int>> k = { { 0, 0, 0 } , {1, 0, 0} ,{0, 1, 1} };
@@ -71,3 +72,4 @@ int main() {
 
     return 0;
 }
+*/

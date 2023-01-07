@@ -42,7 +42,7 @@ int solution(int n, vector<vector<int>> costs) {
     return answer;
 }
 
-
+/*
 int main() {
     vector<vector<int>> v;
     v.push_back({ 0,1,1 });
@@ -52,3 +52,5 @@ int main() {
     v.push_back({ 2,3,8 });
     printf("result : %d\n",solution(4,v));
 }
+
+*/

@@ -1,6 +1,3 @@
-/*
-
-
 #include <string>
 #include <vector>
 #include <map>
@@ -65,6 +62,7 @@ vector<int> solution(vector<string> gems) {
     return answer;
 }
 
+/*
 int main() {
     
     vector<string> input;

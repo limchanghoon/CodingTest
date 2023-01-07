@@ -6,18 +6,15 @@
 using namespace std;
 
 bool cmp_si(const pair<string, int>& a, const pair<string, int>& b) {
-    //if (a.second == b.second) return a.first > b.first;
     return a.second > b.second;
 }
 
 bool cmp_ii(const pair<int, int>& a, const pair<int, int>& b) {
-    //if (a.second == b.second) return a.first > b.first;
     return a.second > b.second;
 }
 
 vector<int> solution(vector<string> genres, vector<int> plays) {
     vector<int> answer;
-    //map<string, priority_queue<int>> pqm;
     map<string, map<int, int>> pqm;
     map<string, int> gen_sum;
 
@@ -45,6 +42,7 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
     return answer;
 }
 
+/*
 int main() {
     vector<string> gv;
     vector<int> pv;
@@ -70,3 +68,5 @@ int main() {
     printf("\n");
     return 0;
 }
+
+*/
