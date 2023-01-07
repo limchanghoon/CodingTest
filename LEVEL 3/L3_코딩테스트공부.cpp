@@ -1,4 +1,3 @@
-/*
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -15,11 +14,11 @@ int solution(int alp, int cop, vector<vector<int>> problems) {
 		}
 	}
 
-	// ¾Ë°í·Â(ÄÚµù·Â)À» 1¿Ã¸®°í 1½Ã°£ ¾²´Â °æ¿ì
+	// ì•Œê³ ë ¥(ì½”ë”©ë ¥)ì„ 1ì˜¬ë¦¬ê³  1ì‹œê°„ ì“°ëŠ” ê²½ìš°
 	problems.push_back({ 0,0,1,0,1 });
 	problems.push_back({ 0,0,0,1,1 });
 
-	// Ã¤¿ö¾ßÇÏ´Â ¾Ë°í·Â, ÄÚµù·Â °è»ê
+	// ì±„ì›Œì•¼í•˜ëŠ” ì•Œê³ ë ¥, ì½”ë”©ë ¥ ê³„ì‚°
 	int alp_max = 0, cop_max = 0;
 	for (auto temp : problems) {
 		if (temp[0] > alp_max) {
@@ -30,7 +29,7 @@ int solution(int alp, int cop, vector<vector<int>> problems) {
 		}
 	}
 
-	// ÀÌ¹Ì Á¶°ÇÀÌ ÃæÁ·µÇ¸é ÃÖ´ë ¿ä±¸·ÂÀ¸·Î ¹Ù²ãÁà¾ßÇÔ
+	// ì´ë¯¸ ì¡°ê±´ì´ ì¶©ì¡±ë˜ë©´ ìµœëŒ€ ìš”êµ¬ë ¥ìœ¼ë¡œ ë°”ê¿”ì¤˜ì•¼í•¨
 	if(alp > alp_max)
 		alp = alp_max;
 	if (cop > cop_max)
@@ -38,7 +37,7 @@ int solution(int alp, int cop, vector<vector<int>> problems) {
 
 	costs[alp][cop] = 0;
 
-	// ·çÇÁ¸¦ µ¹¸ç ÇØ´ç ¾Ë°í·Â°ú ÄÚµù·Â¿¡ ÃÖ¼ÒÀÇ ½Ã°£À» ÀúÀåÇÔ;
+	// ë£¨í”„ë¥¼ ëŒë©° í•´ë‹¹ ì•Œê³ ë ¥ê³¼ ì½”ë”©ë ¥ì— ìµœì†Œì˜ ì‹œê°„ì„ ì €ì¥í•¨;
 	for (int i = alp; i <= alp_max; i++) {
 		for (int j = cop; j <= cop_max; j++) {
 			for (auto temp : problems) {
@@ -54,6 +53,7 @@ int solution(int alp, int cop, vector<vector<int>> problems) {
 
 }
 
+/*
 int main() {
 	//  [alp_req, cop_req, alp_rwd, cop_rwd, cost]
 	printf("Result : %d\n", solution(10, 10, { {10,15,2,1,2},{20,20,3,3,4} }));
