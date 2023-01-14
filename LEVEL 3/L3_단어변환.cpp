@@ -24,7 +24,7 @@ public:
     int cnt;
 };
 
-// 너비 우선 탐색
+// BFS
 int solution(string begin, string target, vector<string> words) {
     queue<W> q;
 
