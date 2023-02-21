@@ -25,7 +25,7 @@ string timeToStr(int time) {
 }
 
 string solution(string play_time, string adv_time, vector<string> logs) {
-    // stringÀ» int·Î º¯È¯ (ÃÊ('s)·Î º¯È¯)
+    // stringì„ intë¡œ ë³€í™˜ (ì´ˆ('s)ë¡œ ë³€í™˜)
     regex reg("([0-9][0-9]):([0-5][0-9]):([0-5][0-9])-([0-9][0-9]):([0-5][0-9]):([0-5][0-9])");
     regex reg2("([0-9][0-9]):([0-5][0-9]):([0-5][0-9])");
     smatch m;
@@ -34,16 +34,21 @@ string solution(string play_time, string adv_time, vector<string> logs) {
     regex_match(adv_time, m, reg2);
     int adv_time_s = 60 * 60 * stoi(m[1]) + 60 * stoi(m[2]) + stoi(m[3]);
 
-    // 100½Ã°£ * 60 * 60
+    // 100ì‹œê°„ * 60 * 60
     vector<int> results(360000);
     for (const string& str : logs) {
         regex_match(str, m, reg);
         int start = 60 * 60 * stoi(m[1]) + 60 * stoi(m[2]) + stoi(m[3]);
         int end = 60 * 60 * stoi(m[4]) + 60 * stoi(m[5]) + stoi(m[6]);
 
-        for (size_t i = start; i < end; i++) {
-            results[i]++;
-        }
+        // ëˆ„ì í•© ì‚¬ìš©
+        results[start] += 1;
+        results[end] -= 1;
+    }
+
+    // ëˆ„ì í•© ê³„ì‚°
+    for (size_t i = 0; i < results.size() - 1; i++) {
+        results[i + 1] += results[i];
     }
 
     long long value = 0;
@@ -54,7 +59,7 @@ string solution(string play_time, string adv_time, vector<string> logs) {
     }
     maxValue = value;
 
-    // Åõ Æ÷ÀÎÅÍ »ç¿ë p1 »©°í, p2 ´õÇÑ´Ù.
+    // íˆ¬ í¬ì¸í„° ì‚¬ìš© p1 ë¹¼ê³ , p2 ë”í•œë‹¤.
     for (int p1 = 0, p2 = adv_time_s; p2 < play_time_s; p1++, p2++) {
         value -= results[p1];
         value += results[p2];
@@ -70,7 +75,7 @@ string solution(string play_time, string adv_time, vector<string> logs) {
 }
 
 int main() {
-    cout << "Á¤´ä : " << solution("02:03:55", "00:14:15", 
+    cout << "ì •ë‹µ : " << solution("02:03:55", "00:14:15", 
         { "01:20:15-01:45:14", "00:40:31-01:00:00", "00:25:50-00:48:29", "01:30:59-01:53:29", "01:37:44-02:02:30" }) 
         << endl;
     return 0;
