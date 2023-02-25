@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// ¹ÙÀÌ³Ê¸® ÇüÅÂ·Î ¸¸µê. 10 => "1010"
+// ë°”ì´ë„ˆë¦¬ í˜•íƒœë¡œ ë§Œë“¦. 10 => "1010"
 void toBinary(long long n, string& binary)
 {
     if (n / 2 != 0) {
@@ -14,7 +14,7 @@ void toBinary(long long n, string& binary)
     binary.append(to_string(n % 2));
 }
 
-// 1 3 7 15 31 ... (2^n -1 °¹¼ö¿¡ ¸Â°Ô 0À¸·Î ¾Õ¿¡ Ã¤¿ò)
+// 1 3 7 15 31 ... (2^n -1 ê°¯ìˆ˜ì— ë§ê²Œ 0ìœ¼ë¡œ ì•ì— ì±„ì›€)
 void fill_by_zero(string& binary) {
     for (int i = 1; true; i++) {
         int tmp = pow(2, i) - 1;
@@ -25,17 +25,17 @@ void fill_by_zero(string& binary) {
         }
     }
 }
-// 100 0 000 = > ºÒ°¡´É
-// 001 1 010 => ºÒ°¡´É
-// 000 1 010 => °¡´É
-//   1 0 1   => ºÒ°¡´É 
+// 100 0 000 => ë¶ˆê°€ëŠ¥
+// 001 1 010 => ë¶ˆê°€ëŠ¥
+// 000 1 010 => ê°€ëŠ¥
+//   1 0 1   => ë¶ˆê°€ëŠ¥ 
 bool check_tree(const string& binary, size_t bottom, size_t top) {
-    // ¸®ÇÁ³ëµå ÆÇ´Ü
+    // ë¦¬í”„ë…¸ë“œ íŒë‹¨
     if (bottom == top) {
         return true;
     }
     size_t mid = (bottom + top) / 2;
-    // 0ÀÎ ³ëµåÀÇ ÀÚ½ÄÀÌ 1ÀÌ¸é ºÒ°¡´ÉÇÑ °æ¿ìÀÌ´Ù.
+    // 0ì¸ ë…¸ë“œì˜ ìì‹ì´ 1ì´ë©´ ë¶ˆê°€ëŠ¥í•œ ê²½ìš°ì´ë‹¤.
     if (binary[mid] == '0') {
         if (binary[(bottom + mid - 1) / 2] == '1' || binary[(mid + 1 + top) / 2] == '1') {
             return false;
@@ -61,19 +61,19 @@ vector<int> solution(vector<long long> numbers) {
 
 
 int main() {
-    cout << "¹®Á¦1 Á¤´ä : ";
+    cout << "ë¬¸ì œ1 ì •ë‹µ : ";
     for (int n : solution({ 7, 42, 5 })) {
         cout << n << " ";
     }
     cout << endl;
 
-    cout << "¹®Á¦2 Á¤´ä : ";
+    cout << "ë¬¸ì œ2 ì •ë‹µ : ";
     for (int n : solution({ 63, 111, 95 })) {
         cout << n << " ";
     }
     cout << endl;
 
-    cout << "¹®Á¦3 Á¤´ä : ";
+    cout << "ë¬¸ì œ3 ì •ë‹µ : ";
     for (int n : solution({ 5, 10, 26, 64 })) {
         cout << n << " ";
     }
